@@ -1,4 +1,7 @@
+import requests
 import streamlit as st
+
+URL = "http://127.0.0.1:8080/"
 
 st.title("Chatbot Demo")
 
@@ -15,8 +18,9 @@ if st.button("Send"):
         st.session_state['chat_history'].append({"role": "user", "content": user_input})
 
         # Generate a response from the chatbot
-        # chatbot_response = generate_response(user_input)
-        st.session_state['chat_history'].append({"role": "assistant", "content": user_input})
+        orchestrator_response = requests.get(URL+f"/orchestrator/{user_input}").json()["llm_response"]
+        tool_response = requests.get(URL+f"{orchestrator_response}").json()["llm_response"]
+        st.session_state['chat_history'].append({"role": "assistant", "content": tool_response})
 
 # Display chat history
 for chat in st.session_state['chat_history']:

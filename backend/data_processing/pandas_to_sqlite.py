@@ -21,16 +21,13 @@ columns = [
 ]
 
 # Step 1: Load the CSV file into a pandas DataFrame
-csv_file = "/Users/stas_chi/Documents/Projects/Izba AI/data/price_paid_kensington_chelsea.csv"  # Replace with your CSV file path
+csv_file = "/Users/stas_chi/Documents/Projects/Izba AI/izba-ai/data/kensington_chelsea_price_paid_data.csv"  # Replace with your CSV file path
 df = pd.read_csv(csv_file)
-df.columns = columns
 
 df["date_of_transfer"] = df["date_of_transfer"].apply(lambda x: x.split(" ")[0])
 
-print(df["date_of_transfer"])
-
 # Step 2: Connect to SQLite database (or create it if it doesn't exist)
-conn = sqlite3.connect('/Users/stas_chi/Documents/Projects/Izba AI/backend/databases/price_paid_data.db')  # Replace with your desired database name
+conn = sqlite3.connect('/Users/stas_chi/Documents/Projects/Izba AI/izba-ai/backend/databases/price_paid_data.db')  # Replace with your desired database name
 cursor = conn.cursor()
 
 # Step 3: Convert the DataFrame into a SQL table

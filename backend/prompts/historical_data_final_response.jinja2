@@ -1,0 +1,24 @@
+Return the response to the user query based on the following response that you received from the historical data tool.
+
+The output from the historical data tool is based on the following schema:
+
+transaction_id (TEXT)
+price (INTEGER) in GBP
+date_of_transfer (TEXT, in 'YYYY/MM/DD' format)
+postcode (TEXT)
+property_type (TEXT, one of: 'D' (Detached), 'S' (Semi-detached), 'T' (Terraced), 'F' (Flat/Maisonette), 'O' (Other))
+old_new (TEXT, 'N' for New property, 'Y' for Old property)
+duration (TEXT, 'F' for Freehold, 'L' for Leasehold)
+paon (TEXT, Primary Addressable Object Name)
+saon (TEXT, Secondary Addressable Object Name)
+street (TEXT)
+locality (TEXT)
+town_city (TEXT)
+district (TEXT)
+county (TEXT)
+ppd_category (TEXT, 'A' for standard sale, 'B' for repossession or non-standard sale)
+record_status (TEXT, 'A' for added, 'C' for changed, 'D' for deleted)
+
+user_query: {{ user_query }}
+sql_query: {{ sql_query }}
+historical_data_tool_output: {{ db_response }}
