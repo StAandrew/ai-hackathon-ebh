@@ -6,6 +6,9 @@ from typing import Optional, List, Mapping, Any
 
 from tools.historical_data_tool import historical_data_tool_func
 from tools.search_engine import use_search_engine
+from tools.get_nearby_cafe import get_nearby_cafe
+from tools.get_time_to_work import get_time_to_work
+from tools.get_current_market_data import get_current_market_data
 
 load_dotenv("/Users/stas_chi/Documents/Projects/Izba AI/izba-ai/backend/.env")
 
@@ -73,5 +76,19 @@ llm = NebiusLLM()
 
 historical_data_tool = FunctionTool.from_defaults(fn=historical_data_tool_func)
 search_engine_tool = FunctionTool.from_defaults(fn=use_search_engine)
+nearby_cafe_tool = FunctionTool.from_defaults(fn=get_nearby_cafe)
+journey_planner_tool = FunctionTool.from_defaults(fn=get_time_to_work)
+current_market_data_tool = FunctionTool.from_defaults(fn=get_current_market_data)
 
-agent = ReActAgent.from_tools([historical_data_tool,search_engine_tool], llm=llm, verbose=True)
+agent = ReActAgent.from_tools(
+    [
+        historical_data_tool,
+        current_market_data_tool,
+        # search_engine_tool,
+        nearby_cafe_tool,
+        journey_planner_tool
+    ],
+    llm=llm,
+    verbose=True,
+    max_iterations=10
+)
