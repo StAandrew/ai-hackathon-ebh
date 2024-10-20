@@ -21,6 +21,10 @@ image2_url: The URL for the second image of the property, if available.
 image3_url: The URL for the third image of the property, if available.
 image4_url: The URL for the fourth image of the property, if available.
 
+Example:
+user_query: Show me properties below 1.5M GBP in Kensington and Chelsea
+response: {"SQL_QUERY": "SELECT * FROM listings WHERE price < 1500000"}
+
 Return your response as a JSON object: {"SQL_QUERY": <INSERT_SQL_QUERY>}. Start your response with "{"
 
 user query: {{ user_query }}

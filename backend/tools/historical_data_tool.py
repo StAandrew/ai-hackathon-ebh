@@ -44,8 +44,12 @@ def historical_data_tool_func(user_query: str) -> dict[str,str]:
         top_p=0.9
     )
 
+    print(completion.choices[0].message.content)
+
     try:
+        print(json.loads(completion.choices[0].message.content))
         SQL_QUERY = json.loads(completion.choices[0].message.content)["SQL_QUERY"]
+        print(SQL_QUERY)
     except:
         print("Failed to load JSON from LLM output")
 

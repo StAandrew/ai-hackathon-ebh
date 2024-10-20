@@ -7,22 +7,18 @@ price (INTEGER) in GBP
 date_of_transfer (TEXT, in 'YYYY-MM-DD' format)
 postcode (TEXT)
 property_type (TEXT, one of: 'D' (Detached), 'S' (Semi-detached), 'T' (Terraced), 'F' (Flat/Maisonette), 'O' (Other))
-old_new (TEXT, 'N' for New property, 'Y' for Old property)
-duration (TEXT, 'F' for Freehold, 'L' for Leasehold)
-paon (TEXT, Primary Addressable Object Name)
-saon (TEXT, Secondary Addressable Object Name)
 street (TEXT)
-locality (TEXT)
-town_city (TEXT)
-district (TEXT)
-county (TEXT)
-ppd_category (TEXT, 'A' for standard sale, 'B' for repossession or non-standard sale)
-record_status (TEXT, 'A' for added, 'C' for changed, 'D' for deleted)
 
 Example:
 user_query: What was the average price of detached houses in 1995?
 response: {"SQL_QUERY": "SELECT AVG(price) FROM price_paid_data WHERE property_type = 'D' AND date_of_transfer LIKE '1995-%-%'"}
 
-Return your response as a JSON object: {"SQL_QUERY": <INSERT_SQL_QUERY>}. Start your response with "{"
+Example:
+user_query: What was the average price in 2021?
+response: {"SQL_QUERY": "SELECT AVG(price) FROM price_paid_data WHERE date_of_transfer LIKE '2020-%-%'"}
+
+Return your response as a JSON object: {"SQL_QUERY": <INSERT_SQL_QUERY>}
+
+Start your response with "{" and finish with "}"
 
 user query: {{ user_query }}

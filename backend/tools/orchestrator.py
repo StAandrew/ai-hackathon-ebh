@@ -36,8 +36,6 @@ def get_orchestrator_response(user_query: str) -> dict[str,str]:
         top_p=0.9
     )
 
-    print(completion.choices[0].message.content)
-
     return {
         "debug_info": "",
         "llm_response": completion.choices[0].message.content
