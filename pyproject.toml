@@ -19,6 +19,7 @@ uvicorn = "^0.32.0"
 llama-index = "^0.11.19"
 llama-hub = "^0.0.79.post1"
 googlemaps = "^4.10.0"
+babel = "^2.16.0"
 
 [build-system]
 requires = ["poetry-core"]

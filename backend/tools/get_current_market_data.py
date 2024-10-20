@@ -39,13 +39,9 @@ columns = [
 ]
 
 def get_current_market_data(user_query: str) -> dict[str,str]:
-    """Tool that has access to current property for sale listings data. 
+    """Tool that has access to all current properties for sale listings data in Kensington and Chelsea. 
 
     This tool always provides all info that you need about current listings.
-
-    Note that currently the database only contains data for Kensington and Chelsea.
-
-    Remember that postcode is very important info.
 
     Takes in a user query as an input and returns the output in the following format:
     {
@@ -106,13 +102,13 @@ def get_current_market_data(user_query: str) -> dict[str,str]:
                 "address": row[7],
                 "postcode": row[9],
                 "number_of_bedrooms": row[2],
-                "number_of_bathrooms": row[3]
+                "number_of_bathrooms": row[3],
+                "image1_url": row[14]
             }
         )
 
 
-    return return_data
-
-df = get_current_market_data("Show me all listings under £2M.")
-
-print(df)
+    return {
+        "debug_info": SQL_QUERY,
+        "return_data": return_data
+    }
