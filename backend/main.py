@@ -3,7 +3,16 @@ from typing import List, Dict
 from tools.historical_data_tool import historical_data_tool_func
 from tools.orchestrator import get_orchestrator_response
 
+from agent_implementation import agent
+
 app = FastAPI()
+
+@app.get("/llama_index_agent/{user_query}")
+def get_react_agent_response(user_query: str) -> str:
+    response = agent.chat(
+        user_query
+    )
+    return response.response
 
 @app.get("/orchestrator/{user_query}")
 def get_orchestrator_output(user_query: str) -> dict[str,str]:
