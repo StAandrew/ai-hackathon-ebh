@@ -84,7 +84,7 @@ agent = ReActAgent.from_tools(
     [
         historical_data_tool,
         current_market_data_tool,
-        # search_engine_tool,
+        search_engine_tool,
         nearby_cafe_tool,
         journey_planner_tool
     ],
