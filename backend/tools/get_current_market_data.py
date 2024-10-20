@@ -2,6 +2,8 @@ import json
 import os
 import pandas as pd
 import sqlite3
+import babel.numbers
+import decimal
 
 from dotenv import load_dotenv
 from jinja2 import Environment, FileSystemLoader, Template
@@ -107,8 +109,16 @@ def get_current_market_data(user_query: str) -> dict[str,str]:
             }
         )
 
+    return_str = ""
+
+    for i,row in enumerate(rows):
+        return_str += f"""\n\n<span style='color:yellow'>**Property {i+1}**</span>: {row[4]},
+**Price**: {babel.numbers.format_currency(decimal.Decimal(row[10]), 'GBP')},
+**Postcode**: {row[9]}\n
+"""
 
     return {
         "debug_info": SQL_QUERY,
-        "return_data": return_data
+        "return_data": return_data,
+        "return_str": return_str
     }
